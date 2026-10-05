@@ -1,0 +1,52 @@
+volumes:
+  shared-data:
+
+services:
+
+  mqtt:
+    image: eclipse-mosquitto:2
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mosquitto:/mosquitto/config
+    command: mosquitto -c /mosquitto/config/mosquitto.conf
+
+  sensor-simulator:
+    image: siva97159/ecrio-sensor-simulator:latest
+    environment:
+      MQTT_BROKER: mqtt
+      MQTT_PORT: 1883
+    depends_on:
+      - mqtt
+
+  edge-processor:
+    image: siva97159/ecrio-edge-processor:latest
+    environment:
+      MQTT_BROKER: mqtt
+      MQTT_PORT: 1883
+      PYTHONUNBUFFERED: "1"
+    depends_on:
+      - mqtt
+
+  data-logger:
+    image: siva97159/ecrio-data-logger:latest
+    environment:
+      MQTT_BROKER: mqtt
+      MQTT_PORT: 1883
+      DATA_DIR: /app/data
+      PYTHONUNBUFFERED: "1"
+    volumes:
+      - shared-data:/app/data
+    depends_on:
+      - mqtt
+
+  dashboard:
+    image: siva97159/ecrio-dashboard:latest
+    ports:
+      - "8501:8501"
+    environment:
+      DATA_DIR: /app/data
+    volumes:
+      - shared-data:/app/data
+    depends_on:
+      - data-logger

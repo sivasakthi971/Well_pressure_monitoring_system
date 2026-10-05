@@ -1,0 +1,5 @@
+paho-mqtt==2.1.0
+PyYAML
+streamlit==1.63.0
+pandas==3.0.5
+plotly

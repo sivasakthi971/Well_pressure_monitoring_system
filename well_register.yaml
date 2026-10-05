@@ -1,0 +1,81 @@
+# Per-Well Integrity & Operating Register
+wells:
+  WELL-001:
+    name: "Alpha Well-001"
+    completion_type: "Gas Lift Producer"
+    annuli_present:
+      - casing_A
+      - casing_B
+      - casing_C
+    maasp:
+      casing_A: 120.0
+      casing_B: 110.0
+      casing_C: 95.0
+    tubing_maop: 150.0
+    tubing_thresholds:
+      HIHI: 148.0
+      HI: 138.0
+      LO: 100.0
+      LOLO: 90.0
+    expected_shut_in_pressure: 155.0
+    max_buildup_rate_bar_hr: 3.0
+    normal_band:
+      tubing_head: [115.0, 135.0]
+      casing_A: [90.0, 105.0]
+      casing_B: [80.0, 95.0]
+      casing_C: [70.0, 85.0]
+      flowline: [55.0, 75.0]
+      choke: [50.0, 70.0]
+
+  WELL-002:
+    name: "Beta Well-002 (SCP Risk)"
+    completion_type: "Natural Producer"
+    annuli_present:
+      - casing_A
+      - casing_B
+      - casing_C
+    maasp:
+      casing_A: 105.0
+      casing_B: 90.0
+      casing_C: 80.0
+    tubing_maop: 140.0
+    tubing_thresholds:
+      HIHI: 138.0
+      HI: 130.0
+      LO: 90.0
+      LOLO: 80.0
+    expected_shut_in_pressure: 145.0
+    max_buildup_rate_bar_hr: 2.0
+    normal_band:
+      tubing_head: [110.0, 130.0]
+      casing_A: [85.0, 100.0]
+      casing_B: [75.0, 88.0]
+      casing_C: [65.0, 78.0]
+      flowline: [50.0, 70.0]
+      choke: [45.0, 65.0]
+
+  WELL-003:
+    name: "Gamma Well-003 (Hydrate/Blockage Risk)"
+    completion_type: "Dual Completion Producer"
+    annuli_present:
+      - casing_A
+      - casing_B
+    maasp:
+      casing_A: 115.0
+      casing_B: 100.0
+      casing_C: 85.0
+    tubing_maop: 155.0
+    tubing_thresholds:
+      HIHI: 152.0
+      HI: 140.0
+      LO: 95.0
+      LOLO: 85.0
+    expected_shut_in_pressure: 160.0
+    max_buildup_rate_bar_hr: 2.5
+    normal_band:
+      tubing_head: [120.0, 140.0]
+      casing_A: [92.0, 108.0]
+      casing_B: [82.0, 96.0]
+      casing_C: [70.0, 82.0]
+      flowline: [58.0, 78.0]
+      choke: [52.0, 72.0]
